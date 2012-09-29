@@ -1,10 +1,14 @@
 from setuptools import setup, find_packages
 
 from articles import get_version
+import setuplib
+
+packages, package_data = setuplib.find_packages('articles')
 
 setup(
     name = "feincms-articles",
-    packages = find_packages(),
+    packages = packages,
+    package_data=package_data,
     include_package_data=True,
     install_requires=[
         "FeinCMS",
