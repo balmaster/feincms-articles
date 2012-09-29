@@ -1,1 +1,5 @@
 docs/_build
+/build
+/dist
+/feincms_articles.egg-info
+*.pyc
