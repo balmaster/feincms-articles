@@ -36,7 +36,12 @@ class ArticleCategoryList(models.Model):
         cls.form = ArticleCategoryListForm
 
     def get_queryset_for_render(self):
-        return Article.objects.filter(category=self.category)
+        queryset = Article.objects.active()
+        if self.category:
+            queryset = queryset.filter(category=self.category).order_by(self.category.order_by)
+        else:
+            queryset = queryset.order_by('-publication_date')    
+        return queryset    
 
     def render(self, **kwargs):
         context = {
